@@ -74,7 +74,7 @@ class SwiftUICamModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate
 //------------------------------------------------------------------------------------------------------------------\
 //Setting view for preview ------------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------------------------------------/
-struct CameraPreview: UIViewRepresentable {
+struct SwiftUICamPreview: UIViewRepresentable {
     
     @EnvironmentObject var camera : SwiftUICamModel
     var view: UIView

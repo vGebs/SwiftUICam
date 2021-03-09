@@ -60,7 +60,7 @@ struct CameraView: View{
     var body: some View{
         ZStack{
             ...
-            CameraPreview(view: view)
+            SwiftUICamPreview(view: view)
                 .ignoresSafeArea(.all, edges: .all)
                 .onTapGesture(count: 2){
                     camera.toggleCamera()
