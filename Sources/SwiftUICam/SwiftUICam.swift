@@ -37,10 +37,10 @@ public class SwiftUICamModel: NSObject, ObservableObject, AVCapturePhotoCaptureD
     }
     
     //Core Functionality
-    func takePic(){ prepareToTakePic_() }
-    func retakePic(){ retakePic_() }
-    func savePic(){ savePic_() }
-    func toggleCamera(){ toggleCamera_() }
+    public func takePic(){ prepareToTakePic_() }
+    public func retakePic(){ retakePic_() }
+    public func savePic(){ savePic_() }
+    public func toggleCamera(){ toggleCamera_() }
     
     
     
@@ -74,12 +74,12 @@ public class SwiftUICamModel: NSObject, ObservableObject, AVCapturePhotoCaptureD
 //------------------------------------------------------------------------------------------------------------------\
 //Setting view for preview ------------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------------------------------------/
-struct SwiftUICamPreview: UIViewRepresentable {
+public struct SwiftUICamPreview: UIViewRepresentable {
     
     @EnvironmentObject var camera : SwiftUICamModel
     var view: UIView
     
-    func makeUIView(context: Context) ->  UIView {
+    public func makeUIView(context: Context) ->  UIView {
         camera.Check()
         if !camera.alert {
             camera.preview = AVCaptureVideoPreviewLayer(session: camera.session)
@@ -100,7 +100,7 @@ struct SwiftUICamPreview: UIViewRepresentable {
         return view
     }
     
-    func updateUIView(_ uiView: UIView, context: Context) {
+    public func updateUIView(_ uiView: UIView, context: Context) {
         let brightness = CGFloat(0.35)
         
         //Turns screen brightness all the way up to take front flash pic
