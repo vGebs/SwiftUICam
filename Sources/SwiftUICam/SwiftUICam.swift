@@ -10,25 +10,25 @@ import MediaPlayer
 public class SwiftUICamModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate{
         
     //Used to notify UI that frontFlash is active (i.e. picture is being taken)
-    @Published var frontFlashActive = false
+    @Published public var frontFlashActive = false
     
     //Used to enable flash for next picture
-    @Published var flashEnabled = true
+    @Published public var flashEnabled = true
     
     //Used to notify the takepic-volume-button when the camera is on screen
-    @Published var onCameraScreen = true
+    @Published public var onCameraScreen = true
     
     //Current camera in use [(front of rear) used for front flash in view]
-    @Published var currentCamera = CameraSelection.front
+    @Published public var currentCamera = CameraSelection.front
     
     //Bool to specify whether a pic was taken
-    @Published var picTaken = false
+    @Published public var picTaken = false
     
     //Bool to specify whether or not a pic was saved
-    @Published var picSaved = false
+    @Published public var picSaved = false
     
     //Pic Data
-    @Published var image: UIImage?
+    @Published public var image: UIImage?
     
     
     
@@ -76,7 +76,7 @@ public class SwiftUICamModel: NSObject, ObservableObject, AVCapturePhotoCaptureD
 //------------------------------------------------------------------------------------------------------------------/
 public struct SwiftUICamPreview: UIViewRepresentable {
     
-    @EnvironmentObject var camera : SwiftUICamModel
+    @EnvironmentObject var camera: SwiftUICamModel
     var view: UIView
     
     public func makeUIView(context: Context) ->  UIView {
