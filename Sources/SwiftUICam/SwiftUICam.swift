@@ -32,7 +32,7 @@ public class SwiftUICamModel: NSObject, ObservableObject, AVCapturePhotoCaptureD
     
     
     
-    init(volumeCameraButton: Bool){
+    public init(volumeCameraButton: Bool){
         volumeCameraButtonOn = volumeCameraButton
     }
     
