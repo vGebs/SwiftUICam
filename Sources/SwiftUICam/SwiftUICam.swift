@@ -7,7 +7,7 @@ import MediaPlayer
 //------------------------------------------------------------------------------------------------------------------\
 //Camera Model ------------------------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------------------------------------/
-class SwiftUICamModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate{
+public class SwiftUICamModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate{
         
     //Used to notify UI that frontFlash is active (i.e. picture is being taken)
     @Published var frontFlashActive = false
@@ -161,7 +161,7 @@ extension SwiftUICamModel{
         }
     }
     
-    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+    public func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
     
         if error != nil{
             return
@@ -466,7 +466,7 @@ extension SwiftUICamModel {
 //Click the volume button to snap pic -------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------------------------------------/
 extension SwiftUICamModel {
-    func listenVolumeButton(){
+    fileprivate func listenVolumeButton(){
              
         let audioSession = AVAudioSession.sharedInstance()
         do {
@@ -480,7 +480,7 @@ extension SwiftUICamModel {
     
     //Function is called when the volume button is pressed
     //Fix so that the volume is unaffected when pressing ->  currentAudioLevel = audioLevel, *CLICK* audioLevel = currentAudioLevel (or something like that)
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "outputVolume"{
 //                   let audioSession = AVAudioSession.sharedInstance()
 //                   if audioSession.outputVolume > audioLevel {
