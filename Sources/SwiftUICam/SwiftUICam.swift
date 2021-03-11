@@ -37,11 +37,12 @@ public class SwiftUICamModel: NSObject, ObservableObject, AVCapturePhotoCaptureD
     }
     
     //Core Functionality
+    public func makeUIView(_ viewBounds: UIView) -> UIView { makeUIView_(viewBounds) }
+    public func updateUIView() { updateUIView_() }
     public func takePic(){ prepareToTakePic_() }
     public func retakePic(){ retakePic_() }
     public func savePic(){ savePic_() }
     public func toggleCamera(){ toggleCamera_() }
-    
     
     
     //View preview for the UIViewRepresentable
@@ -69,42 +70,36 @@ public class SwiftUICamModel: NSObject, ObservableObject, AVCapturePhotoCaptureD
     private var audioLevel : Float = 0.0
 }
 
-
-
 //------------------------------------------------------------------------------------------------------------------\
 //Setting view for preview ------------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------------------------------------/
-public struct SwiftUICamPreview: UIViewRepresentable {
-    
-    @EnvironmentObject var camera: SwiftUICamModel
-    var view: UIView
-    
-    public func makeUIView(context: Context) ->  UIView {
-        camera.Check()
-        if !camera.alert {
-            camera.preview = AVCaptureVideoPreviewLayer(session: camera.session)
-            camera.preview.frame = view.frame
+extension SwiftUICamModel{
+    private func makeUIView_(_ viewBounds: UIView) -> UIView{
+        Check()
+        if !alert {
+            preview = AVCaptureVideoPreviewLayer(session: session)
+            preview.frame = viewBounds.frame
             
             // Your Own Properties...
-            camera.preview.videoGravity = .resizeAspectFill
-            camera.preview.cornerRadius = 20
-            camera.preview.masksToBounds = true
-            view.layer.addSublayer(camera.preview)
+            preview.videoGravity = .resizeAspectFill
+            preview.cornerRadius = 20
+            preview.masksToBounds = true
+            viewBounds.layer.addSublayer(preview)
             
-            camera.listenVolumeButton()
+            listenVolumeButton()
 
             // starting session
-            camera.session.startRunning()
+            session.startRunning()
         }
-                
-        return view
+
+        return viewBounds
     }
     
-    public func updateUIView(_ uiView: UIView, context: Context) {
+    private func updateUIView_() {
         let brightness = CGFloat(0.35)
         
         //Turns screen brightness all the way up to take front flash pic
-        if camera.frontFlashActive {
+        if frontFlashActive {
             UIScreen.main.brightness = CGFloat(1.0)
         } else {
             UIScreen.main.brightness = brightness
