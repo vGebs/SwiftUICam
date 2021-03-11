@@ -31,12 +31,13 @@ This package is downloaded through Swift's Package Manager.
 
 # Usage
 
+## Using the Module
 In the file in which you are using the SwiftUICamModel:
 
 ``` Swift
 import SwiftUICam
 ```
-
+## Object Instantiation
 Because we wish to only instantiate one instance of the camera:
 
 ``` Swift
@@ -53,7 +54,7 @@ struct SwiftUICamApp: App {
 }
 ```
 
-Setting the view:
+## Setting the view
 * To set the view, first create a structure that inhertits UIViewRepresentable. 
 * This protocol states that you must implement two functions - MakeUIView & UpdateUIView.
 * MakeUIView - Sets the view (basically ViewDidLoad)
@@ -79,7 +80,7 @@ struct SwiftUICamPreview: UIViewRepresentable{
 }
 ```
 
-Using the SwiftUICamPreview:
+## Using the SwiftUICamPreview
 * To use the view preview we created above, we simply define it inside of a view.
 * Again, declare the SwiftUICamModel @EnvironmentObject and instantiate the view frame using a UIView.
 * Pass this defined view into the preview to call the function and define the view.
@@ -108,7 +109,7 @@ struct CameraView: View{
 }
 ```
 
-Taking a picture:
+## Taking a picture
 * Now that we've defined our UIViewRepresentable view and used it within our SwiftUI application, we can now make other views that use the SwiftUICamModel. 
 
 * We can define a cameraButtonView that when pressed takes a picture.
