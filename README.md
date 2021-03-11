@@ -70,7 +70,7 @@ struct SwiftUICamPreview: UIViewRepresentable{
     var view: UIView
     
     func makeUIView(context: Context) ->  UIView {
-        camera.makeUIView(view)
+        return camera.makeUIView(view)
     }
     
     func updateUIView(_ uiView: UIView, context: Context) {
