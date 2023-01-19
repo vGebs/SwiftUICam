@@ -29,7 +29,7 @@ protocol CameraProtocol {
 }
 
 
-class CameraWrapper: ObservableObject, CameraProtocol  {
+public class CameraWrapper: ObservableObject, CameraProtocol  {
     
     // MARK: - User interactive Camera States
     
@@ -136,7 +136,7 @@ class CameraWrapper: ObservableObject, CameraProtocol  {
     private var cancellables: [AnyCancellable] = []
         
     // MARK: - Initializer
-    init() {
+    public init() {
         self.camFlipEnabled = false
         self.recordActionEnabled = false
         self.cameraButtonEnabled = false
